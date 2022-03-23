@@ -3,18 +3,22 @@ import 'dart:convert';
 class ProfissionalModel {
   String nomeProfissional = "";
   String titulo = "";
+  String urlPerfil = "";
   ProfissionalModel({
-    required this.nomeProfissional,
-    required this.titulo,
+    this.nomeProfissional = "",
+    this.titulo = "",
+    this.urlPerfil = "",
   });
 
-  ProfissionalModel.empty({this.nomeProfissional = '', this.titulo = ''});
+  ProfissionalModel.empty(
+      {this.nomeProfissional = '', this.titulo = '', this.urlPerfil = ''});
 
   Map<String, dynamic> toMap() {
     final result = <String, dynamic>{};
 
     result.addAll({'nomeProfissional': nomeProfissional});
     result.addAll({'titulo': titulo});
+    result.addAll({'urlPerfil': urlPerfil});
 
     return result;
   }
@@ -23,6 +27,7 @@ class ProfissionalModel {
     return ProfissionalModel(
       nomeProfissional: map['nomeProfissional'] ?? '',
       titulo: map['titulo'] ?? '',
+      urlPerfil: map['urlPerfil'] ?? '',
     );
   }
 

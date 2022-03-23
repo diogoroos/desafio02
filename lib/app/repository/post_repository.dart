@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:miio_test/core/base/repository_base.dart';
+
+import '../../core/base/repository_base.dart';
 
 abstract class IPostRepository extends RepositoryBase {
   String url = "";
@@ -7,13 +8,12 @@ abstract class IPostRepository extends RepositoryBase {
 
 class PostRepository implements IPostRepository {
   @override
-  String url = "http://www.dtworkroom.com/doris/1/2.0.0/";
+  String url = "https://run.mocky.io/v3/6a254331-ff9e-4018-b5ba-c8a55ae16487";
 
   @override
   Future<Response> getData() async {
     dio.options.baseUrl = url;
-    final response = await dio.get('');
-    return response;
+    return await dio.get('');
   }
 
   @override

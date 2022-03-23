@@ -43,4 +43,10 @@ class MiioColors {
 
   /// cor do botao featured
   static const Color botaoFeatured = Color(0xFF92D55B);
+
+  /// cor do botao filtro selecionado
+  static const Color botaoFiltroSelecionado = Color(0xFFA1D2E5);
+
+  /// cor do botao filtro apagado
+  static const Color botaoFiltroApagado = Color(0xFFF0F9FC);
 }
