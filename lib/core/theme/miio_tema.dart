@@ -5,18 +5,31 @@ import 'miio_colors.dart';
 import 'miio_typo.dart';
 
 class MiioTema {
-  InputDecorationTheme get temaInput => InputDecorationTheme(
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(14.0),
-          borderSide: const BorderSide(
-            color: MiioColors.secundario,
-            style: BorderStyle.solid,
-            width: 1.5,
-          ),
-        ),
-        labelStyle: const TextStyle(color: MiioColors.textoClaro),
-        hintStyle: const TextStyle(color: MiioColors.textoDestaque),
-      );
+  ButtonStyle outlineButtonStyle = OutlinedButton.styleFrom(
+    textStyle: MiioTypo().button,
+    minimumSize: const Size(74.38, 43.3),
+    alignment: Alignment.center,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(14)),
+    ),
+  ).copyWith(
+    backgroundColor: MaterialStateProperty.resolveWith<Color>(
+      (Set<MaterialState> states) {
+        if (states.contains(MaterialState.selected)) {
+          return MiioColors.botaoFiltroApagado;
+        }
+        return MiioColors.fundoPrincipal;
+      },
+    ),
+    textStyle: MaterialStateProperty.resolveWith<TextStyle>(
+      (Set<MaterialState> states) {
+        if (states.contains(MaterialState.selected)) {
+          return const TextStyle(color: MiioColors.textoDestaque);
+        }
+        return const TextStyle(color: MiioColors.secundario);
+      },
+    ),
+  );
 
   ThemeData get theme => ThemeData(
         primaryColor: MiioColors.branco,
@@ -24,7 +37,7 @@ class MiioTema {
         scaffoldBackgroundColor: MiioColors.branco,
         dividerColor: MiioColors.slider,
         textTheme: MiioTypo(),
-        inputDecorationTheme: temaInput,
+        outlinedButtonTheme: OutlinedButtonThemeData(style: outlineButtonStyle),
         buttonTheme: const ButtonThemeData(
           height: 43.3,
           shape: RoundedRectangleBorder(
