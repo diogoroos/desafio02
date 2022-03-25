@@ -2,7 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:miio_test/app/shared/components/appbar.dart';
-import 'package:miio_test/core/theme/miio_assets.dart';
+import 'package:miio_test/app/ui/home/components/home_bottom_buttons.dart';
+import 'package:miio_test/core/components/miio_textfield.dart';
 import 'package:miio_test/core/theme/miio_tema.dart';
 import 'package:miio_test/core/theme/miio_typo.dart';
 import 'package:provider/provider.dart';
@@ -49,35 +50,36 @@ class _HomePageState extends State<HomePage> {
           child: SizedBox(
             height: 40 + 43.3 + 27.73 + 24,
             width: double.infinity,
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  SizedBox(
-                    height: 40,
-                    child: Padding(
-                        padding: const EdgeInsets.only(left: 23, right: 19),
-                        child: search()),
-                  ),
-                  const SizedBox(height: 17.73),
-                  SizedBox(
-                    height: 43.3,
-                    child: ListView(
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        physics: const BouncingScrollPhysics(),
-                        padding: const EdgeInsets.only(left: 23.12),
-                        children: [
-                          _botaoArt(),
-                          const SizedBox(width: 10),
-                          _botaoBuyNow(),
-                          const SizedBox(width: 10),
-                          _botaoAuction(),
-                          const SizedBox(width: 10),
-                          _botaoOverall(),
-                        ]),
-                  ),
-                  const SizedBox(height: 30.59),
-                ]),
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+              SizedBox(
+                height: 40,
+                child: Padding(
+                    padding: const EdgeInsets.only(left: 23, right: 19),
+                    child: MiioTextfield(
+                      textController: _controller.txtSearch,
+                    )),
+              ),
+              const SizedBox(height: 17.73),
+              SizedBox(
+                height: 43.3,
+                child: ListView(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    physics: const BouncingScrollPhysics(),
+                    padding: const EdgeInsets.only(left: 23.12),
+                    children: [
+                      _botaoArt(),
+                      const SizedBox(width: 10),
+                      _botaoBuyNow(),
+                      const SizedBox(width: 10),
+                      _botaoAuction(),
+                      const SizedBox(width: 10),
+                      _botaoOverall(),
+                    ]),
+              ),
+              const SizedBox(height: 30.59),
+            ]),
           ),
         ),
         body: SafeArea(
@@ -95,104 +97,60 @@ class _HomePageState extends State<HomePage> {
                     )
                   : const LinearProgressIndicator()),
         ),
-        bottomNavigationBar: _botoesRodape());
+        bottomNavigationBar: const HomeBottomButtons());
   }
 
-  Widget search() {
-    return TextField(
-      decoration: InputDecoration(
-        labelText: 'Search',
-        floatingLabelStyle:
-            const TextStyle(color: MiioColors.botaoFiltroSelecionado),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(14.0),
-          borderSide: const BorderSide(
-            color: MiioColors.botaoFiltroSelecionado,
-            style: BorderStyle.solid,
-            width: 1.5,
-          ),
-        ),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(14.0),
-          borderSide: const BorderSide(
-            color: MiioColors.secundario,
-            style: BorderStyle.solid,
-            width: 1.5,
-          ),
-        ),
-        isDense: true,
-        contentPadding: const EdgeInsets.fromLTRB(19.43, 11.94, 0, 2.06),
-        labelStyle: MiioTypo().bodyText1,
-      ),
-      textAlignVertical: TextAlignVertical.center,
-      controller: _controller.txtSearch,
-    );
-  }
-
-  Widget _botoesRodape() {
-    return SizedBox(
-      height: kBottomNavigationBarHeight,
-      child: BottomNavigationBar(
-        unselectedItemColor: MiioColors.estrelaSelecionada,
-        selectedFontSize: 0.0,
-        unselectedFontSize: 0.0,
-        type: BottomNavigationBarType.shifting,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: ImageIcon(AssetImage('${MiioAssets.icons}explorer.png'),
-                color: MiioColors.estrelaSelecionada, size: 20.32),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: ImageIcon(AssetImage('${MiioAssets.icons}heart.png'),
-                color: MiioColors.estrelaSelecionada, size: 20.32),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: ImageIcon(AssetImage('${MiioAssets.icons}lock.png'),
-                color: MiioColors.estrelaSelecionada, size: 20.32),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: ImageIcon(AssetImage('${MiioAssets.icons}person.png'),
-                color: MiioColors.estrelaSelecionada, size: 20.32),
-            label: '',
-          ),
-        ],
-        onTap: (i) {
-          _mostraErro();
-        },
-      ),
-    );
-  }
-
-  Widget _botaoArt() {
-    return SizedBox(
-      width: 74.38,
-      child: OutlinedButton(
-        onPressed: () => _controller.acaoFiltroArte(),
-        child: const Text('Art'),
-        style: MiioTema().outlineButtonStyle.copyWith(
-              backgroundColor: _controller.botaoSelecionadoArte
-                  ? MaterialStateProperty.resolveWith<Color>(
-                      (Set<MaterialState> states) {
-                        return MiioColors.botaoFiltroSelecionado;
-                      },
-                    )
-                  : MaterialStateProperty.resolveWith<Color>(
-                      (Set<MaterialState> states) {
-                        return MiioColors.botaoFiltroApagado;
-                      },
-                    ),
-            ),
-      ),
-    );
-  }
+  // Widget search() {
+  //   return TextField(
+  //     decoration: InputDecoration(
+  //       labelText: 'Search',
+  //       floatingLabelStyle:
+  //           const TextStyle(color: MiioColors.botaoFiltroSelecionado),
+  //       focusedBorder: OutlineInputBorder(
+  //         borderRadius: BorderRadius.circular(14.0),
+  //         borderSide: const BorderSide(
+  //           color: MiioColors.botaoFiltroSelecionado,
+  //           style: BorderStyle.solid,
+  //           width: 1.5,
+  //         ),
+  //       ),
+  //       border: OutlineInputBorder(
+  //         borderRadius: BorderRadius.circular(14.0),
+  //         borderSide: const BorderSide(
+  //           color: MiioColors.secundario,
+  //           style: BorderStyle.solid,
+  //           width: 1.5,
+  //         ),
+  //       ),
+  //       contentPadding: const EdgeInsets.fromLTRB(19.43, 11.94, 0, 2.06),
+  //       labelStyle: MiioTypo().bodyText1,
+  //     ),
+  //     cursorHeight: 14,
+  //     cursorWidth: 1,
+  //     textAlignVertical: TextAlignVertical.center,
+  //     controller: _controller.txtSearch,
+  //     keyboardType: TextInputType.text,
+  //     autocorrect: false,
+  //     style: const TextStyle(
+  //       fontSize: 14,
+  //       height: 1.0,
+  //       fontWeight: FontWeight.w500,
+  //       fontStyle: FontStyle.normal,
+  //       color: MiioColors.estrelaSelecionada,
+  //     ),
+  //   );
+  // }
 
   Widget _post(PostModel post) {
+    var x = MiioTypo().subtitle1.apply(color: Colors.black);
+    var y = TextStyle(color: Colors.black, fontSize: 7.0);
     return Padding(
-      padding: const EdgeInsets.only(left: 23.12, right: 23.12),
-      child: Container(
+      padding: const EdgeInsets.symmetric(horizontal: 23.12),
+      child: InkWell(
+        onTap: () {
+          Navigator.of(context).pushNamed('detalhe');
+        },
+        child: SizedBox(
         width: 400,
         height: 230,
         child: Stack(
@@ -218,46 +176,62 @@ class _HomePageState extends State<HomePage> {
               top: MediaQuery.of(context).size.height * .20,
               left: 15,
               right: 15,
-              child: Card(
-                elevation: 8,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(14)),
-                child: Container(
-                  width: MediaQuery.of(context).size.height * .90,
-                  height: 60,
+              child: Container(
+                padding: EdgeInsets.only(top: 6),
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: MiioColors.destaqueDetalhe.withOpacity(.05),
+                      blurRadius: 20.0,
+                      spreadRadius: 10.0,
+                      offset: const Offset(0, 2),
+                    )
+                  ],
+                  borderRadius: BorderRadius.circular(14),
+                  color: MiioColors.branco,
+                ),
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width * .87,
+                  height: 75,
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
+                      const SizedBox(width: 13.68),
                       CircleAvatar(
                         radius: 21,
                         backgroundImage:
                             NetworkImage(post.profissional.urlPerfil),
                       ),
+                      const SizedBox(width: 14.46),
                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Container(
-                            height: 30,
-                            width: MediaQuery.of(context).size.height * .20,
-                            child: Wrap(children: [
-                              Text(
-                                post.titulo,
-                                style: MiioTypo().subtitle1,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ]),
-                          ),
-                          Container(
-                            width: 250,
-                            height: 30,
+                          SizedBox(
+                            width: 220,
+                            height: 43,
                             child: Text(
-                              post.descricao,
-                              style: MiioTypo().bodyText1.copyWith(
+                              post.titulo,
+                              maxLines: 2,
+                              style: MiioTypo().subtitle1.copyWith(
                                     color: MiioColors.textoDestaque,
                                     overflow: TextOverflow.ellipsis,
                                   ),
                             ),
-                          )
+                          ),
+                          const SizedBox(height: 3),
+                          SizedBox(
+                            width: 250,
+                            height: 25,
+                            child: Text(
+                              post.descricao,
+                              maxLines: 1,
+                              style: MiioTypo().bodyText1.copyWith(
+                                    color: MiioColors.textoClaro,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                            ),
+                          ),
                         ],
                       )
                     ],
@@ -337,6 +311,29 @@ class _HomePageState extends State<HomePage> {
     // );
   }
 
+  Widget _botaoArt() {
+    return SizedBox(
+      width: 74.38,
+      child: OutlinedButton(
+        onPressed: () => _controller.acaoFiltroArte(),
+        child: const Text('Art'),
+        style: MiioTema().outlineButtonStyle.copyWith(
+              backgroundColor: _controller.botaoSelecionadoArte
+                  ? MaterialStateProperty.resolveWith<Color>(
+                      (Set<MaterialState> states) {
+                        return MiioColors.botaoFiltroSelecionado;
+                      },
+                    )
+                  : MaterialStateProperty.resolveWith<Color>(
+                      (Set<MaterialState> states) {
+                        return MiioColors.botaoFiltroApagado;
+                      },
+                    ),
+            ),
+      ),
+    );
+  }
+
   Widget _botaoBuyNow() {
     return SizedBox(
       width: 100.58,
@@ -403,27 +400,6 @@ class _HomePageState extends State<HomePage> {
                     ),
             ),
       ),
-    );
-  }
-
-  Future<void> _mostraErro() async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: true,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Aviso'),
-          content: const Text('Isso é tudo por aqui ;)'),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('Beleza!'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
     );
   }
 }
