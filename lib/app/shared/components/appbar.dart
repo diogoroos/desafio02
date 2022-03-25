@@ -12,12 +12,11 @@ class MiioAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    var _safeArea = kToolbarHeight + 10;
+    var _safeArea = kToolbarHeight;
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle.dark,
       child: Container(
-        //height: kToolbarHeight + 40 + 27.73 + 43.3,
         color: MiioColors.branco,
         child: Column(
           key: const Key('DefaultAppBar'),

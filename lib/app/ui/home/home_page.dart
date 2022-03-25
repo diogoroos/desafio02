@@ -1,14 +1,15 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:miio_test/app/shared/components/appbar.dart';
+import 'package:miio_test/core/theme/miio_assets.dart';
 import 'package:miio_test/core/theme/miio_tema.dart';
 import 'package:miio_test/core/theme/miio_typo.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/theme/miio_colors.dart';
-import '../controller/post_controller.dart';
-import '../model/post_model.dart';
-import 'components/appbar.dart';
+import '../../../core/theme/miio_colors.dart';
+import '../../controller/post_controller.dart';
+import '../../model/post_model.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -44,100 +45,117 @@ class _HomePageState extends State<HomePage> {
         tamanhoTela.height - kToolbarHeight - kBottomNavigationBarHeight;
 
     return Scaffold(
-      appBar: MiioAppBar(
-        child: Expanded(
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Expanded(
-                  flex: 2,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 23, right: 19),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        labelText: 'Search',
-                        floatingLabelStyle: const TextStyle(
-                            color: MiioColors.botaoFiltroSelecionado),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(14.0),
-                          borderSide: const BorderSide(
-                            color: MiioColors.botaoFiltroSelecionado,
-                            style: BorderStyle.solid,
-                            width: 1.5,
-                          ),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(14.0),
-                          borderSide: const BorderSide(
-                            color: MiioColors.secundario,
-                            style: BorderStyle.solid,
-                            width: 1.5,
-                          ),
-                        ),
-                        isDense: true,
-                        contentPadding:
-                            const EdgeInsets.fromLTRB(19.43, 11.94, 0, 12.06),
-                        labelStyle: MiioTypo().bodyText1,
-                      ),
-                      textAlignVertical: TextAlignVertical.center,
-                      controller: _controller.txtSearch,
-                    ),
+        appBar: MiioAppBar(
+          child: SizedBox(
+            height: 40 + 43.3 + 27.73 + 24,
+            width: double.infinity,
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  SizedBox(
+                    height: 40,
+                    child: Padding(
+                        padding: const EdgeInsets.only(left: 23, right: 19),
+                        child: search()),
                   ),
-                ),
-                //const SizedBox(height: 27.73),
-                Expanded(
-                  child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      physics: const BouncingScrollPhysics(),
-                      padding: const EdgeInsets.only(left: 23.12),
-                      children: [
-                        _botaoArt(),
-                        const SizedBox(width: 10),
-                        _botaoBuyNow(),
-                        const SizedBox(width: 10),
-                        _botaoAuction(),
-                        const SizedBox(width: 10),
-                        _botaoOverall(),
-                      ]),
-                ),
-                const SizedBox(height: 24.59),
-              ]),
+                  const SizedBox(height: 17.73),
+                  SizedBox(
+                    height: 43.3,
+                    child: ListView(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        physics: const BouncingScrollPhysics(),
+                        padding: const EdgeInsets.only(left: 23.12),
+                        children: [
+                          _botaoArt(),
+                          const SizedBox(width: 10),
+                          _botaoBuyNow(),
+                          const SizedBox(width: 10),
+                          _botaoAuction(),
+                          const SizedBox(width: 10),
+                          _botaoOverall(),
+                        ]),
+                  ),
+                  const SizedBox(height: 30.59),
+                ]),
+          ),
         ),
+        body: SafeArea(
+          child: SingleChildScrollView(
+              child: _controller.listaFiltrada != null
+                  ? SizedBox(
+                      height: tamanhoDisponivel - 130,
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: _controller.listaFiltrada!.length,
+                          itemExtent: 230,
+                          itemBuilder: (context, i) {
+                            return _post(_controller.listaFiltrada![i]);
+                          }),
+                    )
+                  : const LinearProgressIndicator()),
+        ),
+        bottomNavigationBar: _botoesRodape());
+  }
+
+  Widget search() {
+    return TextField(
+      decoration: InputDecoration(
+        labelText: 'Search',
+        floatingLabelStyle:
+            const TextStyle(color: MiioColors.botaoFiltroSelecionado),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(14.0),
+          borderSide: const BorderSide(
+            color: MiioColors.botaoFiltroSelecionado,
+            style: BorderStyle.solid,
+            width: 1.5,
+          ),
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(14.0),
+          borderSide: const BorderSide(
+            color: MiioColors.secundario,
+            style: BorderStyle.solid,
+            width: 1.5,
+          ),
+        ),
+        isDense: true,
+        contentPadding: const EdgeInsets.fromLTRB(19.43, 11.94, 0, 2.06),
+        labelStyle: MiioTypo().bodyText1,
       ),
-      body: SingleChildScrollView(
-          child: _controller.listaFiltrada != null
-              ? SizedBox(
-                  height: tamanhoDisponivel - 130,
-                  child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: _controller.listaFiltrada!.length,
-                      itemExtent: 230,
-                      itemBuilder: (context, i) {
-                        return _post(_controller.listaFiltrada![i]);
-                      }),
-                )
-              : const LinearProgressIndicator()),
-      bottomNavigationBar: BottomNavigationBar(
+      textAlignVertical: TextAlignVertical.center,
+      controller: _controller.txtSearch,
+    );
+  }
+
+  Widget _botoesRodape() {
+    return SizedBox(
+      height: kBottomNavigationBarHeight,
+      child: BottomNavigationBar(
         unselectedItemColor: MiioColors.estrelaSelecionada,
+        selectedFontSize: 0.0,
+        unselectedFontSize: 0.0,
+        type: BottomNavigationBarType.shifting,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home, color: MiioColors.branco),
+            icon: ImageIcon(AssetImage('${MiioAssets.icons}explorer.png'),
+                color: MiioColors.estrelaSelecionada, size: 20.32),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.cleaning_services_outlined,
-            ),
+            icon: ImageIcon(AssetImage('${MiioAssets.icons}heart.png'),
+                color: MiioColors.estrelaSelecionada, size: 20.32),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.search,
-            ),
+            icon: ImageIcon(AssetImage('${MiioAssets.icons}lock.png'),
+                color: MiioColors.estrelaSelecionada, size: 20.32),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: ImageIcon(AssetImage('${MiioAssets.icons}person.png'),
+                color: MiioColors.estrelaSelecionada, size: 20.32),
             label: '',
           ),
         ],

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'app/controller/post_controller.dart';
-import 'app/ui/home_page.dart';
+import 'app/ui/home/home_page.dart';
 import 'core/theme/miio_tema.dart';
 
 void main() {
@@ -24,6 +24,7 @@ class MiioApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Miio Teste',
+      debugShowCheckedModeBanner: false,
       theme: MiioTema().theme,
       home: const HomePage(),
     );
