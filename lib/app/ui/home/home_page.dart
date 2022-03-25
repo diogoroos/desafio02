@@ -151,95 +151,96 @@ class _HomePageState extends State<HomePage> {
           Navigator.of(context).pushNamed('detalhe');
         },
         child: SizedBox(
-        width: 400,
-        height: 230,
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Positioned(
-              top: 0,
-              child: Container(
-                height: MediaQuery.of(context).size.height * .25,
-                width: MediaQuery.of(context).size.width - 45,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(21),
-                  image: DecorationImage(
-                    image: NetworkImage(
-                      post.urlImagem,
+          width: 400,
+          height: 230,
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Positioned(
+                top: 0,
+                child: Container(
+                  height: MediaQuery.of(context).size.height * .25,
+                  width: MediaQuery.of(context).size.width - 45,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(21),
+                    image: DecorationImage(
+                      image: NetworkImage(
+                        post.urlImagem,
+                      ),
+                      fit: BoxFit.fill,
                     ),
-                    fit: BoxFit.fill,
                   ),
                 ),
               ),
-            ),
-            Positioned(
-              top: MediaQuery.of(context).size.height * .20,
-              left: 15,
-              right: 15,
-              child: Container(
-                padding: EdgeInsets.only(top: 6),
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: MiioColors.destaqueDetalhe.withOpacity(.05),
-                      blurRadius: 20.0,
-                      spreadRadius: 10.0,
-                      offset: const Offset(0, 2),
-                    )
-                  ],
-                  borderRadius: BorderRadius.circular(14),
-                  color: MiioColors.branco,
-                ),
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width * .87,
-                  height: 75,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const SizedBox(width: 13.68),
-                      CircleAvatar(
-                        radius: 21,
-                        backgroundImage:
-                            NetworkImage(post.profissional.urlPerfil),
-                      ),
-                      const SizedBox(width: 14.46),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            width: 220,
-                            height: 43,
-                            child: Text(
-                              post.titulo,
-                              maxLines: 2,
-                              style: MiioTypo().subtitle1.copyWith(
-                                    color: MiioColors.textoDestaque,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                            ),
-                          ),
-                          const SizedBox(height: 3),
-                          SizedBox(
-                            width: 250,
-                            height: 25,
-                            child: Text(
-                              post.descricao,
-                              maxLines: 1,
-                              style: MiioTypo().bodyText1.copyWith(
-                                    color: MiioColors.textoClaro,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                            ),
-                          ),
-                        ],
+              Positioned(
+                top: MediaQuery.of(context).size.height * .20,
+                left: 15,
+                right: 15,
+                child: Container(
+                  padding: EdgeInsets.only(top: 6),
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: MiioColors.destaqueDetalhe.withOpacity(.05),
+                        blurRadius: 20.0,
+                        spreadRadius: 10.0,
+                        offset: const Offset(0, 2),
                       )
                     ],
+                    borderRadius: BorderRadius.circular(14),
+                    color: MiioColors.branco,
+                  ),
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width * .87,
+                    height: 75,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        const SizedBox(width: 13.68),
+                        CircleAvatar(
+                          radius: 21,
+                          backgroundImage:
+                              NetworkImage(post.profissional.urlPerfil),
+                        ),
+                        const SizedBox(width: 14.46),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              width: 220,
+                              height: 43,
+                              child: Text(
+                                post.titulo,
+                                maxLines: 2,
+                                style: MiioTypo().subtitle1.copyWith(
+                                      color: MiioColors.textoDestaque,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                              ),
+                            ),
+                            const SizedBox(height: 3),
+                            SizedBox(
+                              width: 250,
+                              height: 25,
+                              child: Text(
+                                post.descricao,
+                                maxLines: 1,
+                                style: MiioTypo().bodyText1.copyWith(
+                                      color: MiioColors.textoClaro,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
