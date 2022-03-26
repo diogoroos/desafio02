@@ -2,11 +2,13 @@
 // in miio_test/test/app/controller/post_controller_test.dart.
 // Do not manually edit this file.
 
-import 'dart:async' as _i5;
+import 'dart:async' as _i6;
+import 'dart:ui' as _i7;
 
-import 'package:miio_test/app/controller/post_controller.dart' as _i3;
-import 'package:miio_test/app/model/post_model.dart' as _i4;
-import 'package:miio_test/app/repository/post_repository.dart' as _i2;
+import 'package:flutter/material.dart' as _i3;
+import 'package:miio_test/app/ui/home/controller/post_controller.dart' as _i4;
+import 'package:miio_test/app/ui/home/model/post_model.dart' as _i5;
+import 'package:miio_test/app/ui/home/repository/post_repository.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -21,17 +23,28 @@ import 'package:mockito/mockito.dart' as _i1;
 
 class _FakeIPostRepository_0 extends _i1.Fake implements _i2.IPostRepository {}
 
+class _FakeTextEditingController_1 extends _i1.Fake
+    implements _i3.TextEditingController {}
+
 /// A class which mocks [PostController].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockPostController extends _i1.Mock implements _i3.PostController {
+class MockPostController extends _i1.Mock implements _i4.PostController {
   MockPostController() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  set listaPosts(List<_i4.PostModel>? _listaPosts) =>
+  set postSelecionado(_i5.PostModel? _postSelecionado) =>
+      super.noSuchMethod(Invocation.setter(#postSelecionado, _postSelecionado),
+          returnValueForMissingStub: null);
+  @override
+  set listaPosts(List<_i5.PostModel>? _listaPosts) =>
       super.noSuchMethod(Invocation.setter(#listaPosts, _listaPosts),
+          returnValueForMissingStub: null);
+  @override
+  set listaFiltrada(List<_i5.PostModel>? _listaFiltrada) =>
+      super.noSuchMethod(Invocation.setter(#listaFiltrada, _listaFiltrada),
           returnValueForMissingStub: null);
   @override
   _i2.IPostRepository get repository =>
@@ -42,6 +55,50 @@ class MockPostController extends _i1.Mock implements _i3.PostController {
       super.noSuchMethod(Invocation.setter(#repository, _repository),
           returnValueForMissingStub: null);
   @override
+  _i3.TextEditingController get txtSearch =>
+      (super.noSuchMethod(Invocation.getter(#txtSearch),
+              returnValue: _FakeTextEditingController_1())
+          as _i3.TextEditingController);
+  @override
+  set txtSearch(_i3.TextEditingController? _txtSearch) =>
+      super.noSuchMethod(Invocation.setter(#txtSearch, _txtSearch),
+          returnValueForMissingStub: null);
+  @override
+  bool get botaoSelecionadoArte =>
+      (super.noSuchMethod(Invocation.getter(#botaoSelecionadoArte),
+          returnValue: false) as bool);
+  @override
+  set botaoSelecionadoArte(bool? _botaoSelecionadoArte) => super.noSuchMethod(
+      Invocation.setter(#botaoSelecionadoArte, _botaoSelecionadoArte),
+      returnValueForMissingStub: null);
+  @override
+  bool get botaoSelecionadoBuyNow =>
+      (super.noSuchMethod(Invocation.getter(#botaoSelecionadoBuyNow),
+          returnValue: false) as bool);
+  @override
+  set botaoSelecionadoBuyNow(bool? _botaoSelecionadoBuyNow) =>
+      super.noSuchMethod(
+          Invocation.setter(#botaoSelecionadoBuyNow, _botaoSelecionadoBuyNow),
+          returnValueForMissingStub: null);
+  @override
+  bool get botaoSelecionadoAuction =>
+      (super.noSuchMethod(Invocation.getter(#botaoSelecionadoAuction),
+          returnValue: false) as bool);
+  @override
+  set botaoSelecionadoAuction(bool? _botaoSelecionadoAuction) =>
+      super.noSuchMethod(
+          Invocation.setter(#botaoSelecionadoAuction, _botaoSelecionadoAuction),
+          returnValueForMissingStub: null);
+  @override
+  bool get botaoSelecionadoOverall =>
+      (super.noSuchMethod(Invocation.getter(#botaoSelecionadoOverall),
+          returnValue: false) as bool);
+  @override
+  set botaoSelecionadoOverall(bool? _botaoSelecionadoOverall) =>
+      super.noSuchMethod(
+          Invocation.setter(#botaoSelecionadoOverall, _botaoSelecionadoOverall),
+          returnValueForMissingStub: null);
+  @override
   bool get isLoading =>
       (super.noSuchMethod(Invocation.getter(#isLoading), returnValue: false)
           as bool);
@@ -50,11 +107,53 @@ class MockPostController extends _i1.Mock implements _i3.PostController {
       super.noSuchMethod(Invocation.setter(#isLoading, _isLoading),
           returnValueForMissingStub: null);
   @override
-  _i5.Future<void> buscaDados() =>
+  bool get hasListeners =>
+      (super.noSuchMethod(Invocation.getter(#hasListeners), returnValue: false)
+          as bool);
+  @override
+  void notifica() => super.noSuchMethod(Invocation.method(#notifica, []),
+      returnValueForMissingStub: null);
+  @override
+  _i6.Future<void> buscaDados() =>
       (super.noSuchMethod(Invocation.method(#buscaDados, []),
           returnValue: Future<void>.value(),
-          returnValueForMissingStub: Future<void>.value()) as _i5.Future<void>);
+          returnValueForMissingStub: Future<void>.value()) as _i6.Future<void>);
+  @override
+  void acaoFiltroTexto(String? valor) =>
+      super.noSuchMethod(Invocation.method(#acaoFiltroTexto, [valor]),
+          returnValueForMissingStub: null);
+  @override
+  void acaoFiltroArte() =>
+      super.noSuchMethod(Invocation.method(#acaoFiltroArte, []),
+          returnValueForMissingStub: null);
+  @override
+  void acaoFiltroBuyNow() =>
+      super.noSuchMethod(Invocation.method(#acaoFiltroBuyNow, []),
+          returnValueForMissingStub: null);
+  @override
+  void acaoFiltroAuction() =>
+      super.noSuchMethod(Invocation.method(#acaoFiltroAuction, []),
+          returnValueForMissingStub: null);
+  @override
+  void acaoFiltroOverall() =>
+      super.noSuchMethod(Invocation.method(#acaoFiltroOverall, []),
+          returnValueForMissingStub: null);
   @override
   void resetaDados() => super.noSuchMethod(Invocation.method(#resetaDados, []),
       returnValueForMissingStub: null);
+  @override
+  void addListener(_i7.VoidCallback? listener) =>
+      super.noSuchMethod(Invocation.method(#addListener, [listener]),
+          returnValueForMissingStub: null);
+  @override
+  void removeListener(_i7.VoidCallback? listener) =>
+      super.noSuchMethod(Invocation.method(#removeListener, [listener]),
+          returnValueForMissingStub: null);
+  @override
+  void dispose() => super.noSuchMethod(Invocation.method(#dispose, []),
+      returnValueForMissingStub: null);
+  @override
+  void notifyListeners() =>
+      super.noSuchMethod(Invocation.method(#notifyListeners, []),
+          returnValueForMissingStub: null);
 }

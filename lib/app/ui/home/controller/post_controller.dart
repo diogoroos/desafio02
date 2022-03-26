@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:miio_test/core/base/controller_base.dart';
 
-import '../../core/base/controller_base.dart';
 import '../model/post_model.dart';
 import '../repository/post_repository.dart';
 
 abstract class IPostController extends ControllerBase {
+  PostModel? postSelecionado;
   List<PostModel>? listaPosts;
   List<PostModel>? listaFiltrada;
   bool isLoading = false;
   TextEditingController txtSearch = TextEditingController();
   late IPostRepository repository;
   void notifica();
+  void acaoFiltroTexto(String valor);
   void acaoFiltroArte();
   void acaoFiltroBuyNow();
   void acaoFiltroAuction();
@@ -24,6 +26,9 @@ abstract class IPostController extends ControllerBase {
 }
 
 class PostController extends ChangeNotifier implements IPostController {
+  @override
+  PostModel? postSelecionado;
+
   @override
   List<PostModel>? listaPosts;
 
@@ -67,6 +72,14 @@ class PostController extends ChangeNotifier implements IPostController {
       isLoading = false;
       //notifyListeners();
     }
+  }
+
+  @override
+  void acaoFiltroTexto(String valor) {
+    listaFiltrada = listaPosts!
+        .where((element) => element.descricao.contains(valor))
+        .toList();
+    notifyListeners();
   }
 
   @override

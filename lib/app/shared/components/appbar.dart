@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:miio_test/core/theme/miio_colors.dart';
+import '../../../core/theme/miio_colors.dart';
 
 class MiioAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget child;
@@ -29,7 +29,7 @@ class MiioAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize {
-    var height = kToolbarHeight + 40 + 27.73 + 43.3;
+    var height = kToolbarHeight + 40 + 27.73 + 33.3;
 
     return Size.fromHeight(height);
   }

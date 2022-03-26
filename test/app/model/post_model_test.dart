@@ -1,9 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:miio_test/app/enum/tipo_pintura_enum.dart';
-import 'package:miio_test/app/model/post_model.dart';
+import 'package:miio_test/app/ui/home/enum/tipo_pintura_enum.dart';
+import 'package:miio_test/app/ui/home/model/post_model.dart';
 
 void main() {
-  test('Teste PostModel de json', () async {
+  test('PostModel tem modelo valido', () async {
     final model = PostModel.fromMap({
       "profissional": {"nomeProfissional": "Diogo", "titulo": "UI e UX"},
       "descricao": "teste1",

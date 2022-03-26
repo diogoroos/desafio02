@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:miio_test/core/theme/miio_assets.dart';
-import 'package:miio_test/core/theme/miio_colors.dart';
+import 'package:miio_test/app/shared/components/miio_dialog.dart';
+import '../../../../core/theme/miio_assets.dart';
+import '../../../../core/theme/miio_colors.dart';
 
-class HomeBottomButtons extends StatelessWidget {
-  const HomeBottomButtons({Key? key}) : super(key: key);
+class CompBottomButtons extends StatelessWidget {
+  const CompBottomButtons({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,30 +38,9 @@ class HomeBottomButtons extends StatelessWidget {
           ),
         ],
         onTap: (i) {
-          _mostraErro(context);
+          miioDialog(context);
         },
       ),
-    );
-  }
-
-  Future<void> _mostraErro(BuildContext context) async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: true,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Aviso'),
-          content: const Text('Isso é tudo por aqui ;)'),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('Beleza!'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
     );
   }
 }

@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
-
-import '../../core/base/repository_base.dart';
+import 'package:miio_test/core/base/repository_base.dart';
 
 abstract class IPostRepository extends RepositoryBase {
   String url = "";

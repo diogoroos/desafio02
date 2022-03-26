@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:miio_test/core/theme/miio_colors.dart';
-import 'package:miio_test/core/theme/miio_typo.dart';
+
+import '../../../core/theme/miio_colors.dart';
+import '../../../core/theme/miio_typo.dart';
 
 class MiioTextfield extends StatelessWidget {
-  const MiioTextfield({Key? key, this.textController}) : super(key: key);
-  final TextEditingController? textController;
+  const MiioTextfield({Key? key, this.acao}) : super(key: key);
+  final void Function(String)? acao;
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController _controller = TextEditingController();
-
     return TextField(
       decoration: InputDecoration(
         labelText: 'Search',
@@ -34,7 +33,7 @@ class MiioTextfield extends StatelessWidget {
         contentPadding: const EdgeInsets.fromLTRB(19.43, 11.94, 0, 2.06),
         labelStyle: MiioTypo().bodyText1,
       ),
-      controller: _controller,
+      onChanged: acao,
       cursorHeight: 14,
       cursorWidth: 1,
       textAlignVertical: TextAlignVertical.center,

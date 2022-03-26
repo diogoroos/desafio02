@@ -5,7 +5,7 @@
 import 'dart:async' as _i4;
 
 import 'package:dio/dio.dart' as _i2;
-import 'package:miio_test/app/repository/post_repository.dart' as _i3;
+import 'package:miio_test/app/ui/home/repository/post_repository.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint

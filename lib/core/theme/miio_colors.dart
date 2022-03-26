@@ -12,7 +12,7 @@ class MiioColors {
   static const Color textoDestaque = Color(0xFF222222);
 
   /// cor de fundo botoes sobre imagem detalhe
-  static Color fundoBotoesDetalhe = const Color(0xFF222222).withAlpha(80);
+  static Color fundoBotoesDetalhe = const Color(0xFF222222).withOpacity(0.2);
 
   /// cor de conteúdo de destaque
   static const Color conteudoDestaque = Color(0xFFA9A9A9);
@@ -39,7 +39,7 @@ class MiioColors {
   static const Color estrelaSelecionada = Color(0xFF66C2E9);
 
   /// cor card comentario
-  static Color cardComentario = const Color(0xFFC4C4C4).withAlpha(10);
+  static Color cardComentario = const Color(0xFFC4C4C4).withOpacity(0.10);
 
   /// cor do botao featured
   static const Color botaoFeatured = Color(0xFF92D55B);
