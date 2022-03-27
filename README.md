@@ -1,6 +1,6 @@
 # Miio Test
-Este repositório refere-se ao desafio da Miio.
-Vídeo de explicação do projeto: 
+Este repositório refere-se ao desafio da Miio.<br />
+Vídeo de explicação do projeto (tente no modo anonimo): https://photos.app.goo.gl/CoHw4NxtpghEcHDU6
 
 ## Versão
 Flutter: 2.10.3
