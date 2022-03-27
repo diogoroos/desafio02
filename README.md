@@ -11,6 +11,7 @@ dio: para requisições http<br />
 provider: como gerenciador de estado e injeção de dependências<br />
 mockito: para complemento em testes<br />
 
-![Alt text](img/01.jpg?raw=true "Home")<br />
-![Alt text](img/02.jpg?raw=true "Detalhe")<br />
-![Alt text](img/03.jpg?raw=true "DetalheExpandido")<br />
+![Alt text](img/01.png?raw=true "Home")<br />
+![Alt text](img/02.png?raw=true "Detalhe")<br />
+![Alt text](img/03.png?raw=true "DetalheExpandido")<br />
+![Alt text](img/04.png?raw=true "Testes")<br />
