@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:miio_test/app/model/comentario_model.dart';
+import 'package:miio_test/app/ui/home/model/comentario_model.dart';
 
 void main() {
-  test('Teste ComentarioModel de json', () async {
+  test('ComentarioModel tem texto, email e estrelas', () async {
     final model = ComentarioModel.fromMap({
       "texto": "teste1",
       "email": "teste@t.com",

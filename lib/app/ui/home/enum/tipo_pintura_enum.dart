@@ -5,7 +5,9 @@ enum TipoPinturaEnum { oa, gu, na }
 TipoPinturaEnum localizaTipo(Object? valor) {
   TipoPinturaEnum? nome;
   TipoPinturaEnum.values.asMap().forEach((key, value) {
-    if (value.toString().split('.')[1] == valor) nome = value;
+    if (value.toString().split('.')[1] == valor) {
+      nome = value;
+    }
   });
   return nome!;
 }
@@ -16,11 +18,11 @@ extension TipoPintura on TipoPinturaEnum {
   String get description {
     switch (this) {
       case TipoPinturaEnum.oa:
-        return 'Óleo e acrílico';
+        return 'Oil and Acrilic';
       case TipoPinturaEnum.gu:
-        return 'Guache';
+        return 'Gouache';
       case TipoPinturaEnum.na:
-        return 'Nanquim';
+        return 'Indian Ink';
       default:
         return '';
     }
